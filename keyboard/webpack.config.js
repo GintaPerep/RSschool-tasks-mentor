@@ -1,9 +1,23 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const EsLintPlugin = require('eslint-webpack-plugin');
 
-module.exports = {
-  mode: 'production',
-  entry: ['./src/index.js', './src/style.css'],
+const devServer = (isDev) => !isDev ? {} : {
+  devServer: {
+    open: true,
+    hot: true,
+    port: 8080,
+  }
+};
+
+const esLintPlugin = (isDev) => isDev ? [] : [ new EsLintPlugin({ extensions: ['ts', 'js']}) ];
+
+module.exports = ({develop}) => ({
+  mode: develop ? 'development' : 'production',
+  devtool: develop ? 'inline-source-map' : false,
+  entry: ['./src/index.js', './src/styles.scss'],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'keyboard.bundle.js',
@@ -12,8 +26,12 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(?:ico|gif|png|jpg|jpeg|svg)$/i,
@@ -32,5 +50,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html',
     }),
+    new MiniCssExtractPlugin({ 
+      filename: '[name].[contenthash].css'
+    }),
+    new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }), 
+    ...esLintPlugin(develop),
   ],
-};
+  ...devServer(develop),
+});
