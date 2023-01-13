@@ -9,6 +9,7 @@ const devServer = (isDev) => !isDev ? {} : {
     open: true,
     hot: true,
     port: 8080,
+    compress: true,
   }
 };
 
@@ -17,21 +18,37 @@ const esLintPlugin = (isDev) => isDev ? [] : [ new EsLintPlugin({ extensions: ['
 module.exports = ({develop}) => ({
   mode: develop ? 'development' : 'production',
   devtool: develop ? 'inline-source-map' : false,
-  entry: ['./src/index.js', './src/styles.scss'],
+  entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'keyboard.bundle.js',
+    filename: 'main_keyboard.js',
     assetModuleFilename: 'assets/[name][ext]',
   },
   module: {
     rules: [
       {
-        test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        test: /\.html$/,
+        use: [
+          {
+            loader: 'html-loader',
+            options: { minimize: false },
+          }
+        ]
       },
       {
         test: /\.s[ac]ss$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        use: ['style-loader',
+             'css-loader',
+             'sass-loader',
+            {
+              loader: 'sass-resources-loader',
+              options: {
+                resources: [
+                  'src/styles/vars.scss',
+                ]
+              }
+            }
+          ],
       },
       {
         test: /\.(?:ico|gif|png|jpg|jpeg|svg)$/i,
@@ -49,6 +66,7 @@ module.exports = ({develop}) => ({
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
+      filename: './index.html',
     }),
     new MiniCssExtractPlugin({ 
       filename: '[name].[contenthash].css'

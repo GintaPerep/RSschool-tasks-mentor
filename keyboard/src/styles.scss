@@ -1,0 +1,15 @@
+$maincolor: #c1cd19d8;
+$secondcolor: #548d8a;
+
+body {
+        margin: 0;  
+    
+     #root {
+        margin: 0 auto;
+        width: 100vw;
+        height: 100vh;
+        background-color: $maincolor;
+        background: -webkit-linear-gradient(to right,$secondcolor, $maincolor);
+        background: linear-gradient(to right,$secondcolor, $maincolor);
+    }
+}
