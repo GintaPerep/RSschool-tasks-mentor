@@ -1,5 +1,6 @@
 $maincolor: #c1cd19d8;
 $secondcolor: #548d8a;
+$font-stack:  'Rubik', sans-serif;
 
 body {
         margin: 0;  
@@ -11,5 +12,6 @@ body {
         background-color: $maincolor;
         background: -webkit-linear-gradient(to right,$secondcolor, $maincolor);
         background: linear-gradient(to right,$secondcolor, $maincolor);
+        font-family: $font-stack;
     }
 }
