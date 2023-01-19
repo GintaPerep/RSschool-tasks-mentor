@@ -2,9 +2,10 @@ $bodyBackground: rgb(151, 199, 89);
 $borderColor: rgb(59, 95, 15);
 $fontColor:rgb(240, 248, 231);
 $buttonColor: rgb(48, 76, 16);
-$buttonFunkc: rgb(99, 113, 7);
+$buttonFunkc: rgb(175, 105, 7);
 $buttonTouch: rgb(11, 195, 8);
-$btnActive: rgb(234, 126, 49);
+$btnActive: rgb(218, 73, 11);
+$buttonFn: rgb(200, 64, 18);
 
 .keyboardBody {
     width: 855px;
@@ -42,7 +43,8 @@ $btnActive: rgb(234, 126, 49);
     }
 
     .key:hover {background: $buttonTouch;}
-
+    
+    .key.pressed {background: $buttonFn;}
     .key.active {background-color: $btnActive; border-radius: 20px;}
 
     .ShiftLeft, .ShiftRight, .Enter, .CapsLock {
@@ -71,7 +73,7 @@ $btnActive: rgb(234, 126, 49);
 
     .ShiftLeft, .ShiftRight, .Enter, .CapsLock,
     .Tab, .Backspace, .Delete, .ArrowUp, .ArrowDown, 
-    .ArrowLeft, .ArrowRight, .ControlLeft, .WinLeft,
+    .ArrowLeft, .ArrowRight, .ControlLeft, .MetaLeft,
     .ControlRight, .AltLeft, .AltRight {
         background-color: $buttonFunkc;
         font-weight: 700;
