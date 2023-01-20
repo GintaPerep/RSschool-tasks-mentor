@@ -120,14 +120,96 @@ class KeyboardJs {
     // if pressedButton is not empty then set the as current element
     if (pressedButton) {
       this.current.element = pressedButton.closest('div');
+      console.log(this.current.element);
+      this.turnOffHighLightPressedButton();
     }
     switch (e.code) {
-      case 'ShiftLeft' || 'ShiftRight':
+      case 'ShiftLeft':
         if (this.state.isCapsLockPressed) {
         // make all letter caseUP
           this.state.isShiftLeftPressed = false;
+          this.toggleKeysCase();
+          this.btnUp();
+        } else {
+          this.state.isShiftLeftPressed = false;
+          this.toggleKeysCase();
+          this.btnUp();
+        }
+        break;
+      case 'ShiftRight':
+        if (this.state.isCapsLockPressed) {
+        // make all letter caseUP
           this.state.isShiftRightPressed = false;
           this.toggleKeysCase();
+          this.btnUp();
+        } else {
+          this.state.isShiftRightPressed = false;
+          this.toggleKeysCase();
+          this.btnUp();
+        }
+        break;
+      case 'Backspace':
+        if (keysObject.FN_BTN.includes(e.code)) {
+          this.btnUp();
+        }
+        break;
+      case 'Delete':
+        if (keysObject.FN_BTN.includes(e.code)) {
+          this.btnUp();
+        }
+        break;
+      case 'Tab':
+        if (keysObject.FN_BTN.includes(e.code)) {
+          this.btnUp();
+        }
+        break;
+      case 'Enter':
+        if (keysObject.FN_BTN.includes(e.code)) {
+          this.btnUp();
+        }
+        break;
+      case 'AltRight':
+        if (keysObject.FN_BTN.includes(e.code)) {
+          this.btnUp();
+        }
+        break;
+      case 'AltLeft':
+        if (keysObject.FN_BTN.includes(e.code)) {
+          this.btnUp();
+        }
+        break;
+      case 'ControlRight':
+        if (keysObject.FN_BTN.includes(e.code)) {
+          this.btnUp();
+        }
+        break;
+      case 'ControlLeft':
+        if (keysObject.FN_BTN.includes(e.code)) {
+          this.btnUp();
+        }
+        break;
+      case 'MetaLeft':
+        if (keysObject.FN_BTN.includes(e.code)) {
+          this.btnUp();
+        }
+        break;
+      case 'ArrowUp':
+        if (!keysObject.FN_BTN.includes(e.code)) {
+          this.btnUp();
+        }
+        break;
+      case 'ArrowDown':
+        if (!keysObject.FN_BTN.includes(e.code)) {
+          this.btnUp();
+        }
+        break;
+      case 'ArrowLeft':
+        if (!keysObject.FN_BTN.includes(e.code)) {
+          this.btnUp();
+        }
+        break;
+      case 'ArrowRight':
+        if (!keysObject.FN_BTN.includes(e.code)) {
           this.btnUp();
         }
         break;
@@ -135,48 +217,155 @@ class KeyboardJs {
     }
   }
 
+  inputText(inputKey) {
+    const textareaValue = this.textarea.value;
+    const selectionStartIndex = this.textarea.selectionStart;
+    let slicedText = '';
+
+    const insertedValue = inputKey;
+    if (selectionStartIndex >= 0 && selectionStartIndex <= textareaValue.length) {
+    // slice text of the cursor position LEFT side
+      slicedText += textareaValue.slice(0, selectionStartIndex);
+      // add current pressed key at selected start cursor position
+      slicedText += this.current.char;
+      // slice text of the cursor position RIGHT side
+      slicedText += textareaValue.slice(selectionStartIndex, textareaValue.length);
+      // input combined text to text area
+      this.textarea.value = slicedText;
+
+      this.textarea.selectionStart = selectionStartIndex + this.current.char.length;
+      this.textarea.selectionEnd = selectionStartIndex + this.current.char.length;
+    } else {
+      this.textarea.value += insertedValue;
+    }
+  }
+
   keyDownHandler(e) {
     e.preventDefault();
     this.current.event = e;
     this.current.code = e.code;
+
+    const textareaValue = this.textarea.value;
+    const selectionStartIndex = this.textarea.selectionStart;
     [this.current.element] = this.element.getElementsByClassName(e.code);
     if (this.current.element) {
       this.current.char = this.current.element.querySelectorAll(':not(.hidden)')[1].textContent;
+      this.turnOnHighLightPressedButton();
     }
     switch (e.code) {
-      case 'ShiftLeft' || 'ShiftRight':
+      case 'ShiftLeft':
         if (this.state.isCapsLockPressed) {
         // make all letter caseDown
           this.state.isShiftLeftPressed = true;
+          this.toggleKeysCase();
+          this.btnDown();
+        } else {
+          this.state.isShiftLeftPressed = true;
+          this.toggleKeysCase();
+          this.btnDown();
+        }
+        break;
+      case 'ShiftRight':
+        if (this.state.isCapsLockPressed) {
+        // make all letter caseDown
           this.state.isShiftRightPressed = true;
           this.toggleKeysCase();
+          this.btnDown();
+        } else {
+          this.state.isShiftRightPressed = true;
+          this.toggleKeysCase();
+          this.btnDown();
+        }
+        break;
+      case 'Backspace':
+        if (keysObject.FN_BTN.includes(e.code)) {
+          let removedText = '';
+          if (selectionStartIndex > 0 && selectionStartIndex <= textareaValue.length) {
+            removedText = textareaValue.slice(0, selectionStartIndex - 1)
+                    + (textareaValue.slice(selectionStartIndex, textareaValue.length));
+            this.textarea.value = removedText;
+            this.textarea.selectionStart = selectionStartIndex - 1;
+            this.textarea.selectionEnd = selectionStartIndex - 1;
+          }
+          this.btnDown();
+        }
+        break;
+      case 'Delete':
+        if (keysObject.FN_BTN.includes(e.code)) {
+          let deleteText = '';
+          if (selectionStartIndex >= 0 && selectionStartIndex <= textareaValue.length - 1) {
+            deleteText = textareaValue.slice(0, selectionStartIndex)
+            + (textareaValue.slice(selectionStartIndex + 1, textareaValue.length));
+            this.textarea.value = deleteText;
+            this.textarea.selectionStart = selectionStartIndex;
+            this.textarea.selectionEnd = selectionStartIndex;
+          }
+          this.btnDown();
+        }
+        break;
+      case 'Tab':
+        if (keysObject.FN_BTN.includes(e.code)) {
+          this.current.char = '    ';
+          this.inputText(e.key);
+          this.btnDown();
+        }
+        break;
+      case 'Enter':
+        if (keysObject.FN_BTN.includes(e.code)) {
+          this.current.char = '\n';
+          this.inputText(e.key);
+          this.btnDown();
+        }
+        break;
+      case 'AltRight':
+        if (keysObject.FN_BTN.includes(e.code)) {
+          this.btnDown();
+        }
+        break;
+      case 'AltLeft':
+        if (keysObject.FN_BTN.includes(e.code)) {
+          this.btnDown();
+        }
+        break;
+      case 'ControlRight':
+        if (keysObject.FN_BTN.includes(e.code)) {
+          this.btnDown();
+        }
+        break;
+      case 'ControlLeft':
+        if (keysObject.FN_BTN.includes(e.code)) {
+          this.btnDown();
+        }
+        break;
+      case 'MetaLeft':
+        if (keysObject.FN_BTN.includes(e.code)) {
+          this.btnDown();
+        }
+        break;
+      case 'ArrowUp':
+        if (!keysObject.FN_BTN.includes(e.code)) {
+          this.btnDown();
+        }
+        break;
+      case 'ArrowDown':
+        if (!keysObject.FN_BTN.includes(e.code)) {
+          this.btnDown();
+        }
+        break;
+      case 'ArrowLeft':
+        if (!keysObject.FN_BTN.includes(e.code)) {
+          this.btnDown();
+        }
+        break;
+      case 'ArrowRight':
+        if (!keysObject.FN_BTN.includes(e.code)) {
           this.btnDown();
         }
         break;
         // no default
     }
     if (!keysObject.FN_BTN.includes(e.code)) {
-      const textareaValue = this.textarea.value;
-      const selectionStartIndex = this.textarea.selectionStart;
-      let slicedText = '';
-
-      const insertedValue = e.key;
-
-      if (selectionStartIndex >= 0 && selectionStartIndex <= textareaValue.length) {
-        // slice text of the cursor position LEFT side
-        slicedText += textareaValue.slice(0, selectionStartIndex);
-        // add current pressed key at selected start cursor position
-        slicedText += this.current.char;
-        // slice text of the cursor position RIGHT side
-        slicedText += textareaValue.slice(selectionStartIndex, textareaValue.length);
-        // input combined text to text area
-        this.textarea.value = slicedText;
-
-        this.textarea.selectionStart = selectionStartIndex + this.current.char.length;
-        this.textarea.selectionEnd = selectionStartIndex + this.current.char.length;
-      } else {
-        this.textarea.value += insertedValue;
-      }
+      this.inputText(e.key);
     }
   }
 
@@ -196,6 +385,14 @@ class KeyboardJs {
 
   addActiveState() {
     this.current.element.classList.add('active');
+  }
+
+  turnOnHighLightPressedButton() {
+    this.current.element.classList.add('pressed');
+  }
+
+  turnOffHighLightPressedButton() {
+    this.current.element.classList.remove('pressed');
   }
 
   btnDown() {

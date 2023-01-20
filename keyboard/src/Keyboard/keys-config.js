@@ -11,7 +11,7 @@ export const keysObject = {
     "AltRight",
     "ControlLeft",
     "ControlRight",
-    "WinLeft",
+    "MetaLeft",
     "Delete",
   ],
   KEYS_CONFIG: keysArray,
