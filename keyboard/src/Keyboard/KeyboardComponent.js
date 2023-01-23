@@ -51,6 +51,11 @@ class KeyboardJs {
     divRoot.appendChild(output);
     /* ---- TEXTAREA  END---- */
 
+    /* ---- FOOTER  START---- */
+    const footer = FooterComponent('footer', 'p', 'footerTitle', 'p', 'language');
+    divRoot.appendChild(footer);
+    /* ---- FOOTER END---- */
+
     const keysSection = this.keyGenerator(keysObject.KEYS_CONFIG);
 
     divRoot.appendChild(keysSection);
@@ -61,12 +66,34 @@ class KeyboardJs {
     document.addEventListener('keydown', this.keyDownHandler.bind(this));
     document.addEventListener('keyup', this.toggleCapsLock.bind(this));
     document.addEventListener('keydown', this.languageSwitch.bind(this));
-    this.state.lang = localStorage.getItem('lang');
+    divRoot.addEventListener('mouseup', this.mouseUpHandler.bind(this));
+    divRoot.addEventListener('mousedown', this.mouseDownHandler.bind(this));
+  }
 
-    /* ---- FOOTER  START---- */
-    const footer = FooterComponent('footer', 'p', 'footerTitle', 'p', 'language');
-    divRoot.appendChild(footer);
-    /* ---- FOOTER END---- */
+  mouseDownHandler(e) {
+    console.log('mouseDownHandler');
+    // e.preventDefault();
+
+    this.current.event = e;
+    this.current.code = e.target.innerHTML;
+
+    this.current.element = e.target.closest('div');
+    console.log(this.element);
+
+    if (this.current.element) {
+      this.current.char = e.target.textContent;
+      this.inputText(this.current.char);
+      // this.textarea.value += this.current.char;
+      this.turnOnHighLightPressedButton();
+    }
+
+    console.log(e.target.innerHTML);
+  }
+
+  mouseUpHandler(e) {
+    console.log('mouseUpHandler');
+    this.current.event = e;
+    this.turnOffHighLightPressedButton();
   }
 
   keyGenerator(keys) {
