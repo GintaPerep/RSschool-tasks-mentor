@@ -31,12 +31,6 @@ export const keysObject = {
       caseDown: "ё",
       caseUp: "Ё",
       shiftCaps: "ё",
-    },
-    lv: {
-      caps: "`",
-      caseDown: "`",
-      caseUp: "~",
-      shiftCaps: "~",
     }
   },
   {
@@ -48,12 +42,6 @@ export const keysObject = {
       shiftCaps: "!",
     },
     rus: {
-      caps: "1",
-      caseDown: "1",
-      caseUp: "!",
-      shiftCaps: "!",
-    },
-    lv: {
       caps: "1",
       caseDown: "1",
       caseUp: "!",
@@ -73,12 +61,6 @@ export const keysObject = {
       caseDown: "2",
       caseUp: '"',
       shiftCaps: '"',
-    },
-    lv: {
-      caps: "2",
-      caseDown: "2",
-      caseUp: '"',
-      shiftCaps: '"',
     }
   },
   {
@@ -94,12 +76,6 @@ export const keysObject = {
       caseDown: "3",
       caseUp: "№",
       shiftCaps: "№",
-    },
-    lv: {
-      caps: "3",
-      caseDown: "3",
-      caseUp: "#",
-      shiftCaps: "#",
     }
   },
   {
@@ -115,12 +91,6 @@ export const keysObject = {
       caseDown: "4",
       caseUp: ";",
       shiftCaps: ";",
-    },
-    lv: {
-      caps: "4",
-      caseDown: "4",
-      caseUp: "$",
-      shiftCaps: "$",
     }
   },
   {
@@ -136,13 +106,7 @@ export const keysObject = {
       caseDown: "5",
       caseUp: "%",
       shiftCaps: "%",
-    },
-    lv: {
-        caps: "5",
-        caseDown: "5",
-        caseUp: "%",
-        shiftCaps: "%",
-      }
+    }
   },
   {
     className: "Digit6",
@@ -157,13 +121,7 @@ export const keysObject = {
       caseDown: "6",
       caseUp: ":",
       shiftCaps: ":",
-    },
-    lv: {
-        caps: "6",
-        caseDown: "6",
-        caseUp: "^",
-        shiftCaps: "^",
-      }
+    }
   },
   {
     className: "Digit7",
@@ -178,13 +136,7 @@ export const keysObject = {
       caseDown: "7",
       caseUp: "?",
       shiftCaps: "?",
-    },
-    lv: {
-        caps: "7",
-        caseDown: "7",
-        caseUp: "&",
-        shiftCaps: "&",
-      }
+    }
   },
   {
     className: "Digit8",
@@ -199,13 +151,7 @@ export const keysObject = {
       caseDown: "8",
       caseUp: "*",
       shiftCaps: "*",
-    },
-    lv: {
-        caps: "8",
-        caseDown: "8",
-        caseUp: "*",
-        shiftCaps: "*",
-      }
+    }
   },
   {
     className: "Digit9",
@@ -220,13 +166,7 @@ export const keysObject = {
       caseDown: "9",
       caseUp: "(",
       shiftCaps: "(",
-    },
-    lv: {
-        caps: "9",
-        caseDown: "9",
-        caseUp: "(",
-        shiftCaps: "(",
-      }
+    }
   },
   {
     className: "Digit0",
@@ -241,13 +181,7 @@ export const keysObject = {
       caseDown: "0",
       caseUp: ")",
       shiftCaps: ")",
-    },
-    lv: {
-        caps: "0",
-        caseDown: "0",
-        caseUp: ")",
-        shiftCaps: ")",
-      }
+    }
   },
   {
     className: "Minus",
@@ -262,13 +196,7 @@ export const keysObject = {
       caseDown: "-",
       caseUp: "_",
       shiftCaps: "_",
-    },
-    lv: {
-        caps: "-",
-        caseDown: "-",
-        caseUp: "_",
-        shiftCaps: "_",
-      }
+    }
   },
   {
     className: "Equal",
@@ -283,13 +211,7 @@ export const keysObject = {
       caseDown: "=",
       caseUp: "+",
       shiftCaps: "+",
-    },
-    lv: {
-        caps: "=",
-        caseDown: "=",
-        caseUp: "+",
-        shiftCaps: "+",
-      }
+    }
   },
   {
     className: "Backspace",
@@ -300,11 +222,7 @@ export const keysObject = {
     rus: {
       caseDown: "Backspace",
       caseUp: "Backspace",
-    },
-    lv: {
-        caseDown: "Backspace",
-        caseUp: "Backspace",
-      }
+    }
   },
 ]),
 (keysArray[1] = [
@@ -315,10 +233,6 @@ export const keysObject = {
         caseUp: "Tab",
     },
     rus: {
-        caseDown: "Tab",
-        caseUp: "Tab",
-    },
-    lv: {
         caseDown: "Tab",
         caseUp: "Tab",
     }
@@ -332,10 +246,6 @@ export const keysObject = {
     rus: {
         caseDown: "й",
         caseUp: "Й"
-    },
-    lv: {
-        caseDown: "q",
-        caseUp: "Q"
     }
   }, 
   {
@@ -347,10 +257,6 @@ export const keysObject = {
     rus: {
         caseDown: "ц",
         caseUp: "Ц"
-    },
-    lv: {
-        caseDown: "w",
-        caseUp: "W"
     }
   }, 
   {
@@ -362,10 +268,6 @@ export const keysObject = {
     rus: {
         caseDown: "у",
         caseUp: "У"
-    },
-    lv: {
-        caseDown: "e",
-        caseUp: "E"
     }
   }, 
   {
@@ -377,10 +279,6 @@ export const keysObject = {
     rus: {
         caseDown: "к",
         caseUp: "К"
-    },
-    lv: {
-        caseDown: "r",
-        caseUp: "R"
     }
   }, 
   {
@@ -392,10 +290,6 @@ export const keysObject = {
     rus: {
         caseDown: "е",
         caseUp: "Е"
-    },
-    eng: {
-        caseDown: "t",
-        caseUp: "T"
     }
   }, 
   {
@@ -407,10 +301,6 @@ export const keysObject = {
     rus: {
         caseDown: "н",
         caseUp: "Н"
-    },
-    lv: {
-        caseDown: "y",
-        caseUp: "Y"
     }
   }, 
   {
@@ -422,10 +312,6 @@ export const keysObject = {
     rus: {
         caseDown: "г",
         caseUp: "Г"
-    },
-    lv: {
-        caseDown: "u",
-        caseUp: "U"
     }
   }, 
   {
@@ -437,10 +323,6 @@ export const keysObject = {
     rus: {
         caseDown: "ш",
         caseUp: "Ш"
-    },
-    lv: {
-        caseDown: "i",
-        caseUp: "I"
     }
   }, 
   {
@@ -452,10 +334,6 @@ export const keysObject = {
     rus: {
         caseDown: "щ",
         caseUp: "Щ"
-    },
-    lv: {
-        caseDown: "o",
-        caseUp: "O"
     }
   }, 
   {
@@ -467,10 +345,6 @@ export const keysObject = {
     rus: {
         caseDown: "з",
         caseUp: "З"
-    },
-    lv: {
-        caseDown: "p",
-        caseUp: "P"
     }
   }, 
   {
@@ -486,12 +360,6 @@ export const keysObject = {
         caseDown: "х",
         caseUp: "Х",
         shiftCaps: "х"
-    },
-    lv: {
-        caps: "[",
-        caseDown: "[",
-        caseUp: "{",
-        shiftCaps: "{"
     }
   }, 
   {
@@ -528,12 +396,6 @@ export const keysObject = {
         caseDown: "\\",
         caseUp: "/",
         shiftCaps: "/"
-    },
-    lv: {
-        caps: "\\",
-        caseDown: "\\",
-        caseUp: "|",
-        shiftCaps: "|"
     }
   }, 
   {
@@ -543,10 +405,6 @@ export const keysObject = {
         caseUp: "Del"
     },
     rus: {
-        caseDown: "Del",
-        caseUp: "Del"
-    },
-    lv: {
         caseDown: "Del",
         caseUp: "Del"
     }
@@ -562,11 +420,7 @@ export const keysObject = {
     rus: {
         caseDown: "CapsLock",
         caseUp: "CapsLock",
-    },
-    lv: {
-        caseDown: "CapsLock",
-        caseUp: "CapsLock",
-    },
+    }
   },
   {
     className: "KeyA",
@@ -577,11 +431,7 @@ export const keysObject = {
     rus: {
         caseDown: "ф",
         caseUp: "Ф",
-    },
-    lv: {
-        caseDown: "a",
-        caseUp: "A",
-    },
+    }
   },
   {
     className: "KeyS",
@@ -592,10 +442,6 @@ export const keysObject = {
     rus: {
         caseDown: "ы",
         caseUp: "Ы"
-    },
-    lv: {
-        caseDown: "s",
-        caseUp: "S"
     }
   }, 
   {
@@ -607,10 +453,6 @@ export const keysObject = {
     rus: {
         caseDown: "в",
         caseUp: "В"
-    },
-    lv: {
-        caseDown: "d",
-        caseUp: "D"
     }
   }, 
   {
@@ -622,10 +464,6 @@ export const keysObject = {
     rus: {
         caseDown: "а",
         caseUp: "А"
-    },
-    lv: {
-        caseDown: "f",
-        caseUp: "F"
     }
   }, 
   {
@@ -637,10 +475,6 @@ export const keysObject = {
     rus: {
         caseDown: "п",
         caseUp: "П"
-    },
-    lv: {
-        caseDown: "g",
-        caseUp: "G"
     }
   }, 
   {
@@ -652,10 +486,6 @@ export const keysObject = {
     rus: {
         caseDown: "р",
         caseUp: "Р"
-    },
-    lv: {
-        caseDown: "h",
-        caseUp: "H"
     }
   }, 
   {
@@ -667,10 +497,6 @@ export const keysObject = {
     rus: {
         caseDown: "о",
         caseUp: "О"
-    },
-    lv: {
-        caseDown: "j",
-        caseUp: "J"
     }
   }, 
   {
@@ -682,10 +508,6 @@ export const keysObject = {
     rus: {
         caseDown: "л",
         caseUp: "Л"
-    },
-    lv: {
-        caseDown: "k",
-        caseUp: "K"
     }
   }, 
   {
@@ -697,10 +519,6 @@ export const keysObject = {
     rus: {
         caseDown: "д",
         caseUp: "Д"
-    },
-    lv: {
-        caseDown: "l",
-        caseUp: "L"
     }
   }, 
   {
@@ -716,12 +534,6 @@ export const keysObject = {
         caseDown: "ж",
         caseUp: "Ж",
         shiftCaps: "ж"
-    },
-    lv: {
-        caps: ";",
-        caseDown: ";",
-        caseUp: ":",
-        shiftCaps: ":"
     }
   }, 
   {
@@ -737,12 +549,6 @@ export const keysObject = {
         caseDown: "э",
         caseUp: "Э",
         shiftCaps: "э"
-    }, 
-    lv: {
-        caps: "'",
-        caseDown: "'",
-        caseUp: '"',
-        shiftCaps: '"'
     }
   }, 
   {
@@ -752,10 +558,6 @@ export const keysObject = {
         caseUp: "Enter"
     },
     rus: {
-        caseDown: "Enter",
-        caseUp: "Enter"
-    },
-    lv: {
         caseDown: "Enter",
         caseUp: "Enter"
     }
@@ -771,10 +573,6 @@ export const keysObject = {
     rus: {
         caseDown: "Shift",
         caseUp: "Shift"
-    },
-    lv: {
-        caseDown: "Shift",
-        caseUp: "Shift"
     }
   }, 
   {
@@ -786,10 +584,6 @@ export const keysObject = {
     rus: {
         caseDown: "я",
         caseUp: "Я"
-    },
-    lv: {
-        caseDown: "z",
-        caseUp: "Z"
     }
   }, 
   {
@@ -801,10 +595,6 @@ export const keysObject = {
     rus: {
         caseDown: "ч",
         caseUp: "Ч"
-    },
-    lv: {
-        caseDown: "x",
-        caseUp: "X"
     }
   }, 
   {
@@ -816,10 +606,6 @@ export const keysObject = {
     rus: {
         caseDown: "с",
         caseUp: "С"
-    },
-    lv: {
-        caseDown: "c",
-        caseUp: "C"
     }
   }, 
   {
@@ -831,10 +617,6 @@ export const keysObject = {
     rus: {
         caseDown: "м",
         caseUp: "М"
-    },
-    lv: {
-        caseDown: "v",
-        caseUp: "V"
     }
   }, 
   {
@@ -846,10 +628,6 @@ export const keysObject = {
     rus: {
         caseDown: "и",
         caseUp: "И"
-    },
-    lv: {
-        caseDown: "b",
-        caseUp: "B"
     }
   }, 
   {
@@ -861,10 +639,6 @@ export const keysObject = {
     rus: {
         caseDown: "т",
         caseUp: "Т"
-    },
-    lv: {
-        caseDown: "n",
-        caseUp: "N"
     }
   }, 
   {
@@ -876,10 +650,6 @@ export const keysObject = {
     rus: {
         caseDown: "ь",
         caseUp: "Ь"
-    },
-    lv: {
-        caseDown: "m",
-        caseUp: "M"
     }
   }, 
   {
@@ -895,12 +665,6 @@ export const keysObject = {
         caseDown: "б",
         caseUp: "Б",
         shiftCaps: "б"
-    },
-    lv: {
-        caps: ",",
-        caseDown: ",",
-        caseUp: "<",
-        shiftCaps: "<"
     }
   }, 
   {
@@ -916,12 +680,6 @@ export const keysObject = {
         caseDown: "ю",
         caseUp: "Ю",
         shiftCaps: "ю"
-    },
-    lv: {
-        caps: ".",
-        caseDown: ".",
-        caseUp: ">",
-        shiftCaps: ">"
     }
   }, 
   {
@@ -937,12 +695,6 @@ export const keysObject = {
         caseDown: ".",
         caseUp: ",",
         shiftCaps: ","
-    },
-    lv: {
-        caps: "/",
-        caseDown: "/",
-        caseUp: "?",
-        shiftCaps: "?"
     }
   }, 
   {
@@ -954,10 +706,6 @@ export const keysObject = {
     rus: {
         caseDown: "▲",
         caseUp: "▲"
-    },
-    lv: {
-        caseDown: "▲",
-        caseUp: "▲"
     }
   }, 
   {
@@ -967,10 +715,6 @@ export const keysObject = {
         caseUp: "Shift"
     },
     rus: {
-        caseDown: "Shift",
-        caseUp: "Shift"
-    },
-    lv: {
         caseDown: "Shift",
         caseUp: "Shift"
     }
@@ -986,10 +730,6 @@ export const keysObject = {
     rus: {
         caseDown: "Ctrl",
         caseUp: "Ctrl"
-    },
-    lv: {
-        caseDown: "Ctrl",
-        caseUp: "Ctrl"
     }
   }, 
   {
@@ -999,10 +739,6 @@ export const keysObject = {
         caseUp: "Win"
     },
     rus: {
-        caseDown: "Win",
-        caseUp: "Win"
-    },
-    lv: {
         caseDown: "Win",
         caseUp: "Win"
     }
@@ -1016,10 +752,6 @@ export const keysObject = {
     rus: {
         caseDown: "Alt",
         caseUp: "Alt"
-    },
-    lv: {
-        caseDown: "Alt",
-        caseUp: "Alt"
     }
   }, 
   {
@@ -1029,10 +761,6 @@ export const keysObject = {
         caseUp: " "
     },
     rus: {
-        caseDown: " ",
-        caseUp: " "
-    },
-    lv: {
         caseDown: " ",
         caseUp: " "
     }
@@ -1046,10 +774,6 @@ export const keysObject = {
     rus: {
         caseDown: "Alt",
         caseUp: "Alt"
-    },
-    lv: {
-        caseDown: "Alt",
-        caseUp: "Alt"
     }
   }, 
   {
@@ -1059,10 +783,6 @@ export const keysObject = {
         caseUp: "◄"
     },
     rus: {
-        caseDown: "◄",
-        caseUp: "◄"
-    },
-    lv: {
         caseDown: "◄",
         caseUp: "◄"
     }
@@ -1076,10 +796,6 @@ export const keysObject = {
     rus: {
         caseDown: "▼",
         caseUp: "▼"
-    },
-    lv: {
-        caseDown: "▼",
-        caseUp: "▼"
     }
   }, 
   {
@@ -1091,10 +807,6 @@ export const keysObject = {
     rus: {
         caseDown: "►",
         caseUp: "►"
-    },
-    lv: {
-        caseDown: "►",
-        caseUp: "►"
     }
   }, 
   {
@@ -1104,10 +816,6 @@ export const keysObject = {
         caseUp: "Ctrl"
     },
     rus: {
-        caseDown: "Ctrl",
-        caseUp: "Ctrl"
-    },
-    lv: {
         caseDown: "Ctrl",
         caseUp: "Ctrl"
     }

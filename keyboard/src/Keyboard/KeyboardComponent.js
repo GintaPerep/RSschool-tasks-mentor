@@ -3,6 +3,8 @@ import TextareaComponent from '../Textarea/TextareaComponent';
 import './keyboardBody.scss';
 import { keysObject } from './keys-config';
 
+import FooterComponent from '../Footer/FooterComponent';
+
 class KeyboardJs {
   constructor() {
     this.element = null;
@@ -58,8 +60,13 @@ class KeyboardJs {
     document.addEventListener('keyup', this.keyUpHandler.bind(this));
     document.addEventListener('keydown', this.keyDownHandler.bind(this));
     document.addEventListener('keyup', this.toggleCapsLock.bind(this));
+    document.addEventListener('keydown', this.languageSwitch.bind(this));
+    this.state.lang = localStorage.getItem('lang');
 
-    console.log('keyboard init');
+    /* ---- FOOTER  START---- */
+    const footer = FooterComponent('footer', 'p', 'footerTitle', 'p', 'language');
+    divRoot.appendChild(footer);
+    /* ---- FOOTER END---- */
   }
 
   keyGenerator(keys) {
@@ -91,15 +98,6 @@ class KeyboardJs {
         spanEng.insertAdjacentHTML('beforeEnd', `<span class="shiftCaps hidden">${keys[k][j].eng.shiftCaps || keys[k][j].eng.caseDown}</span>`);
         keyElement.appendChild(spanEng);
 
-        if (keys[k][j].lv !== undefined) {
-          const spanLv = document.createElement('span');
-          spanLv.classList.add('lv', 'hidden');
-          spanLv.insertAdjacentHTML('afterBegin', `<span class="caseDown hidden">${keys[k][j].lv.caseDown}</span>`);
-          spanLv.insertAdjacentHTML('beforeEnd', `<span class="caseUp hidden">${keys[k][j].lv.caseUp}</span>`);
-          spanLv.insertAdjacentHTML('beforeEnd', `<span class="caps hidden">${keys[k][j].lv.caps || keys[k][j].lv.caseUp}</span>`);
-          spanLv.insertAdjacentHTML('beforeEnd', `<span class="shiftCaps hidden">${keys[k][j].lv.shiftCaps || keys[k][j].lv.caseDown}</span>`);
-          keyElement.appendChild(spanLv);
-        }
         switch (keys[k][j].className) {
           case 'CapsLock':
             keyElement.addEventListener('keyup', this.toggleCapsLock.bind(this));
@@ -120,7 +118,6 @@ class KeyboardJs {
     // if pressedButton is not empty then set the as current element
     if (pressedButton) {
       this.current.element = pressedButton.closest('div');
-      console.log(this.current.element);
       this.turnOffHighLightPressedButton();
     }
     switch (e.code) {
@@ -405,6 +402,27 @@ class KeyboardJs {
 
   removeActiveState() {
     this.current.element.classList.remove('active');
+  }
+
+  toggleLang() {
+    const e = this.element.querySelectorAll(`div>.${this.state.lang}`);
+    for (let s = 0; s < e.length; s += 1) {
+      e[s].classList.toggle('hidden');
+      e[s].querySelectorAll(`span.${this.state.case}`)[0].classList.toggle('hidden');
+    }
+  }
+
+  languageSwitch(evt) {
+    this.toggleLang();
+    if (evt.ctrlKey && evt.altKey) {
+      if (localStorage.getItem('lang') === 'eng') {
+        localStorage.setItem('lang', 'rus');
+      } else {
+        localStorage.setItem('lang', 'eng');
+      }
+      this.state.lang = localStorage.getItem('lang');
+    }
+    this.toggleLang();
   }
 
   toggleKeysCase() {
