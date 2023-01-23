@@ -71,29 +71,33 @@ class KeyboardJs {
   }
 
   mouseDownHandler(e) {
-    console.log('mouseDownHandler');
-    // e.preventDefault();
-
+    if (e.target.tagName !== 'SPAN') {
+      return;
+    }
     this.current.event = e;
     this.current.code = e.target.innerHTML;
 
     this.current.element = e.target.closest('div');
-    console.log(this.element);
 
     if (this.current.element) {
-      this.current.char = e.target.textContent;
-      this.inputText(this.current.char);
-      // this.textarea.value += this.current.char;
-      this.turnOnHighLightPressedButton();
+      this.current.char = e.target.innerHTML;
+      this.toggleCapsLock(this.current.char);
+      if (this.current.char !== 'CapsLock') {
+        this.specialKeysHandler(this.current.char);
+        if (!keysObject.FN_BTN.includes(this.current.char)) {
+          if (!keysObject.FN_Mouse.includes(this.current.char)) {
+            this.inputText(this.current.char);
+          }
+        }
+      }
+      this.btnDown();
     }
-
-    console.log(e.target.innerHTML);
   }
 
   mouseUpHandler(e) {
-    console.log('mouseUpHandler');
+    this.current.element = e.target.closest('div');
     this.current.event = e;
-    this.turnOffHighLightPressedButton();
+    this.btnUp();
   }
 
   keyGenerator(keys) {
@@ -125,13 +129,6 @@ class KeyboardJs {
         spanEng.insertAdjacentHTML('beforeEnd', `<span class="shiftCaps hidden">${keys[k][j].eng.shiftCaps || keys[k][j].eng.caseDown}</span>`);
         keyElement.appendChild(spanEng);
 
-        switch (keys[k][j].className) {
-          case 'CapsLock':
-            keyElement.addEventListener('keyup', this.toggleCapsLock.bind(this));
-            break;
-
-            // no default
-        }
         keyboardRow.appendChild(keyElement);
       }
       fragment.appendChild(keyboardRow);
@@ -256,11 +253,144 @@ class KeyboardJs {
       slicedText += textareaValue.slice(selectionStartIndex, textareaValue.length);
       // input combined text to text area
       this.textarea.value = slicedText;
-
+      this.textarea.focus();
       this.textarea.selectionStart = selectionStartIndex + this.current.char.length;
       this.textarea.selectionEnd = selectionStartIndex + this.current.char.length;
     } else {
       this.textarea.value += insertedValue;
+    }
+  }
+
+  specialKeysHandler(e) {
+    const keyCode = e.code || e;
+    const textareaValue = this.textarea.value;
+    const selectionStartIndex = this.textarea.selectionStart;
+    switch (keyCode) {
+      case 'ShiftLeft':
+        if (this.state.isCapsLockPressed) {
+        // make all letter caseDown
+          this.state.isShiftLeftPressed = true;
+          this.toggleKeysCase();
+          this.btnDown();
+        } else {
+          this.state.isShiftLeftPressed = true;
+          this.toggleKeysCase();
+          this.btnDown();
+        }
+        break;
+      case 'ShiftRight':
+        if (this.state.isCapsLockPressed) {
+        // make all letter caseDown
+          this.state.isShiftRightPressed = true;
+          this.toggleKeysCase();
+          this.btnDown();
+        } else {
+          this.state.isShiftRightPressed = true;
+          this.toggleKeysCase();
+          this.btnDown();
+        }
+        break;
+      case 'Backspace':
+        if (keysObject.FN_BTN.includes(keyCode)) {
+          let removedText = '';
+          if (selectionStartIndex > 0 && selectionStartIndex <= textareaValue.length) {
+            removedText = textareaValue.slice(0, selectionStartIndex - 1)
+                    + (textareaValue.slice(selectionStartIndex, textareaValue.length));
+            this.textarea.value = removedText;
+            this.textarea.focus();
+            this.textarea.selectionStart = selectionStartIndex - 1;
+            this.textarea.selectionEnd = selectionStartIndex - 1;
+          }
+          this.btnDown();
+        }
+        break;
+      case 'Delete':
+        if (keysObject.FN_BTN.includes(keyCode)) {
+          let deleteText = '';
+          if (selectionStartIndex >= 0 && selectionStartIndex <= textareaValue.length - 1) {
+            deleteText = textareaValue.slice(0, selectionStartIndex)
+            + (textareaValue.slice(selectionStartIndex + 1, textareaValue.length));
+            this.textarea.value = deleteText;
+            this.textarea.focus();
+            this.textarea.selectionStart = selectionStartIndex;
+            this.textarea.selectionEnd = selectionStartIndex;
+          }
+          this.btnDown();
+        }
+        break;
+      case 'Del': {
+        let deleteText = '';
+        if (selectionStartIndex >= 0 && selectionStartIndex <= textareaValue.length - 1) {
+          deleteText = textareaValue.slice(0, selectionStartIndex)
+              + (textareaValue.slice(selectionStartIndex + 1, textareaValue.length));
+          this.textarea.value = deleteText;
+          this.textarea.focus();
+          this.textarea.selectionStart = selectionStartIndex;
+          this.textarea.selectionEnd = selectionStartIndex;
+        }
+        this.btnDown();
+      }
+        break;
+      case 'Tab':
+        if (keysObject.FN_BTN.includes(keyCode)) {
+          this.current.char = '    ';
+          this.inputText(keyCode);
+          this.btnDown();
+        }
+        break;
+      case 'Enter':
+        if (keysObject.FN_BTN.includes(keyCode)) {
+          this.current.char = '\n';
+          this.inputText(keyCode);
+          this.btnDown();
+        }
+        break;
+      case 'AltRight':
+        if (keysObject.FN_BTN.includes(keyCode)) {
+          this.btnDown();
+        }
+        break;
+      case 'AltLeft':
+        if (keysObject.FN_BTN.includes(keyCode)) {
+          this.btnDown();
+        }
+        break;
+      case 'ControlRight':
+        if (keysObject.FN_BTN.includes(keyCode)) {
+          this.btnDown();
+        }
+        break;
+      case 'ControlLeft':
+        if (keysObject.FN_BTN.includes(keyCode)) {
+          this.btnDown();
+        }
+        break;
+      case 'MetaLeft':
+        if (keysObject.FN_BTN.includes(keyCode)) {
+          this.btnDown();
+        }
+        break;
+      case 'ArrowUp':
+        if (!keysObject.FN_BTN.includes(keyCode)) {
+          this.btnDown();
+        }
+        break;
+      case 'ArrowDown':
+        if (!keysObject.FN_BTN.includes(keyCode)) {
+          this.btnDown();
+        }
+        break;
+      case 'ArrowLeft':
+        if (!keysObject.FN_BTN.includes(keyCode)) {
+          this.btnDown();
+        }
+        break;
+      case 'ArrowRight':
+        if (!keysObject.FN_BTN.includes(keyCode)) {
+          this.btnDown();
+        }
+        break;
+        // no default
     }
   }
 
@@ -394,7 +524,8 @@ class KeyboardJs {
   }
 
   toggleCapsLock(e) {
-    if (e.code === 'CapsLock') {
+    const keyCode = e.code || e;
+    if (keyCode === 'CapsLock') {
       if (!this.state.isCapsLockPressed) {
         this.addActiveState();
         this.state.isCapsLockPressed = true;

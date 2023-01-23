@@ -42,7 +42,7 @@ $buttonFn: rgb(200, 64, 18);
         transition: border-radius 0.5s, background-color 0.5s;
     }
 
-    .key:hover {background: $buttonTouch;}
+   // .key:hover {background: $buttonTouch;}
     
     .key.pressed {background: $buttonFn;}
     .key.active {background-color: $btnActive; border-radius: 20px;}

@@ -1,5 +1,6 @@
 const keysArray = [];
 export const keysObject = {
+  FN_Mouse:["Del","Shift","Ctrl","Alt","Win"],
   FN_BTN: [
     "Backspace",
     "Tab",
