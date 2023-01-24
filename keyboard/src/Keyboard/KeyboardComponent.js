@@ -253,7 +253,7 @@ class KeyboardJs {
       slicedText += textareaValue.slice(selectionStartIndex, textareaValue.length);
       // input combined text to text area
       this.textarea.value = slicedText;
-      this.textarea.focus();
+      // this.textarea.focus();
       this.textarea.selectionStart = selectionStartIndex + this.current.char.length;
       this.textarea.selectionEnd = selectionStartIndex + this.current.char.length;
     } else {
@@ -551,10 +551,12 @@ class KeyboardJs {
   }
 
   btnDown() {
+    console.log(this.current.element);
     this.current.element.classList.add('pressed');
   }
 
   btnUp() {
+    console.log(this.current.element);
     this.current.element.classList.remove('pressed');
   }
 
