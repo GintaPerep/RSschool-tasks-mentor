@@ -114,6 +114,11 @@ class KeyboardJs {
     if (this.current.char === 'Shift' && this.state.isShiftLeftPressed === false) {
       this.toggleKeysCase();
     }
+    if (this.current.element.classList.contains('Space')) {
+      console.log('I m space');
+      this.current.char = this.current.element.querySelectorAll(':not(.hidden)')[1].textContent;
+      this.inputText(this.current.char);
+    }
   }
 
   keyGenerator(keys) {
@@ -559,12 +564,10 @@ class KeyboardJs {
   }
 
   btnDown() {
-    console.log(this.current.element);
     this.current.element.classList.add('pressed');
   }
 
   btnUp() {
-    console.log(this.current.element);
     this.current.element.classList.remove('pressed');
   }
 
@@ -594,7 +597,6 @@ class KeyboardJs {
   }
 
   initLang() {
-    console.log(localStorage.lang);
     if (localStorage.lang === undefined) {
       localStorage.setItem('lang', this.state.lang);
     }
