@@ -82,7 +82,7 @@ class KeyboardJs {
     if (this.current.element) {
       this.current.char = e.target.innerHTML;
       this.toggleCapsLock(this.current.char);
-      if (this.current.char !== 'CapsLock') {
+      if (this.current.char !== 'CapsLock')  {
         this.specialKeysHandler(this.current.char);
         if (!keysObject.FN_BTN.includes(this.current.char)) {
           if (!keysObject.FN_Mouse.includes(this.current.char)) {
@@ -90,7 +90,19 @@ class KeyboardJs {
           }
         }
       }
-      this.btnDown();
+      if (this.current.char === 'Shift') {
+        if (this.state.isShiftLeftPressed === false) {
+          this.addActiveState();
+          this.state.isShiftLeftPressed = true;
+        } else {
+          this.state.isShiftLeftPressed = false;
+          this.removeActiveState();
+        }
+        this.toggleKeysCase();
+      } else {
+        this.toggleKeysCase();
+        this.btnDown();
+      }
     }
   }
 
@@ -98,6 +110,9 @@ class KeyboardJs {
     this.current.element = e.target.closest('div');
     this.current.event = e;
     this.btnUp();
+    if (this.current.char === 'Shift' && this.state.isShiftLeftPressed === false) {
+      this.toggleKeysCase();
+    }
   }
 
   keyGenerator(keys) {
@@ -334,14 +349,12 @@ class KeyboardJs {
       case 'Tab':
         if (keysObject.FN_BTN.includes(keyCode)) {
           this.current.char = '    ';
-          this.inputText(keyCode);
           this.btnDown();
         }
         break;
       case 'Enter':
         if (keysObject.FN_BTN.includes(keyCode)) {
           this.current.char = '\n';
-          this.inputText(keyCode);
           this.btnDown();
         }
         break;
