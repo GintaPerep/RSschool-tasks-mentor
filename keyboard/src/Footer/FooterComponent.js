@@ -8,7 +8,7 @@ const FooterComponent = (parentName, childName1, className1, childName2, classNa
   element.appendChild(child1);
   const child2 = document.createElement(childName2);
   child2.classList.add(className2);
-  child2.innerHTML = 'To switch the language combination: left ctrl + alt';
+  child2.innerHTML = 'To switch the language, you must use the manual keyboard with the combination:  left Ctrl + Alt';
   element.appendChild(child2);
   return element;
 };

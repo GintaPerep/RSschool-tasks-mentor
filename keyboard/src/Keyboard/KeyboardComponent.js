@@ -51,11 +51,6 @@ class KeyboardJs {
     divRoot.appendChild(output);
     /* ---- TEXTAREA  END---- */
 
-    /* ---- FOOTER  START---- */
-    const footer = FooterComponent('footer', 'p', 'footerTitle', 'p', 'language');
-    divRoot.appendChild(footer);
-    /* ---- FOOTER END---- */
-
     const keysSection = this.keyGenerator(keysObject.KEYS_CONFIG);
 
     divRoot.appendChild(keysSection);
@@ -68,6 +63,11 @@ class KeyboardJs {
     document.addEventListener('keydown', this.languageSwitch.bind(this));
     divRoot.addEventListener('mouseup', this.mouseUpHandler.bind(this));
     divRoot.addEventListener('mousedown', this.mouseDownHandler.bind(this));
+
+    /* ---- FOOTER  START---- */
+    const footer = FooterComponent('footer', 'p', 'footerTitle', 'p', 'language');
+    divRoot.appendChild(footer);
+    /* ---- FOOTER END---- */
   }
 
   mouseDownHandler(e) {
@@ -82,7 +82,7 @@ class KeyboardJs {
     if (this.current.element) {
       this.current.char = e.target.innerHTML;
       this.toggleCapsLock(this.current.char);
-      if (this.current.char !== 'CapsLock')  {
+      if (this.current.char !== 'CapsLock') {
         this.specialKeysHandler(this.current.char);
         if (!keysObject.FN_BTN.includes(this.current.char)) {
           if (!keysObject.FN_Mouse.includes(this.current.char)) {
@@ -268,7 +268,6 @@ class KeyboardJs {
       slicedText += textareaValue.slice(selectionStartIndex, textareaValue.length);
       // input combined text to text area
       this.textarea.value = slicedText;
-      // this.textarea.focus();
       this.textarea.selectionStart = selectionStartIndex + this.current.char.length;
       this.textarea.selectionEnd = selectionStartIndex + this.current.char.length;
     } else {
@@ -394,11 +393,6 @@ class KeyboardJs {
         }
         break;
       case 'ArrowLeft':
-        if (!keysObject.FN_BTN.includes(keyCode)) {
-          this.btnDown();
-        }
-        break;
-      case 'ArrowRight':
         if (!keysObject.FN_BTN.includes(keyCode)) {
           this.btnDown();
         }
