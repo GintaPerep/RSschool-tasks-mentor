@@ -68,6 +68,7 @@ class KeyboardJs {
     const footer = FooterComponent('footer', 'p', 'footerTitle', 'p', 'language');
     divRoot.appendChild(footer);
     /* ---- FOOTER END---- */
+    this.initLang();
   }
 
   mouseDownHandler(e) {
@@ -589,6 +590,16 @@ class KeyboardJs {
       }
       this.state.lang = localStorage.getItem('lang');
     }
+    this.toggleLang();
+  }
+
+  initLang() {
+    console.log(localStorage.lang);
+    if (localStorage.lang === undefined) {
+      localStorage.setItem('lang', this.state.lang);
+    }
+    this.toggleLang();
+    this.state.lang = localStorage.getItem('lang');
     this.toggleLang();
   }
 
