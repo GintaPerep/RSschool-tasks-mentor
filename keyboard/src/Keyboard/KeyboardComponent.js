@@ -111,11 +111,7 @@ class KeyboardJs {
     this.current.element = e.target.closest('div');
     this.current.event = e;
     this.btnUp();
-    if (this.current.char === 'Shift' && this.state.isShiftLeftPressed === false) {
-      this.toggleKeysCase();
-    }
     if (this.current.element.classList.contains('Space')) {
-      console.log('I m space');
       this.current.char = this.current.element.querySelectorAll(':not(.hidden)')[1].textContent;
       this.inputText(this.current.char);
     }
@@ -608,15 +604,33 @@ class KeyboardJs {
   toggleKeysCase() {
     const e = this.element.querySelectorAll(`div>.${this.state.lang}`);
     for (let s = 0; s < e.length; s += 1) {
-      e[s].querySelectorAll('span')[0].classList.contains('hidden') || e[s].querySelectorAll('span')[0].classList.add('hidden');
-      e[s].querySelectorAll('span')[1].classList.contains('hidden') || e[s].querySelectorAll('span')[1].classList.add('hidden');
-      e[s].querySelectorAll('span')[2].classList.contains('hidden') || e[s].querySelectorAll('span')[2].classList.add('hidden');
-      e[s].querySelectorAll('span')[3].classList.contains('hidden') || e[s].querySelectorAll('span')[3].classList.add('hidden');
-      (this.state.isShiftLeftPressed || this.state.isShiftRightPressed) && this.state.isCapsLockPressed ? (e[s].querySelectorAll('span')[3].classList.remove('hidden'),
-      this.state.case = 'shiftCaps') : this.state.isCapsLockPressed ? (e[s].querySelectorAll('span')[2].classList.remove('hidden'),
-      this.state.case = 'caps') : this.state.isShiftLeftPressed || this.state.isShiftRightPressed ? (e[s].querySelectorAll('span')[1].classList.remove('hidden'),
-      this.state.case = 'caseUp') : (e[s].querySelectorAll('span')[0].classList.remove('hidden'),
-      this.state.case = 'caseDown');
+      if (this.state.isCapsLockPressed && (this.state.isShiftLeftPressed === false
+        || this.state.isShiftRightPressed === false)) {
+        e[s].querySelectorAll('span')[0].classList.add('hidden');
+        e[s].querySelectorAll('span')[3].classList.add('hidden');
+        e[s].querySelectorAll('span')[2].classList.remove('hidden');
+        this.state.case = 'caps';
+      } else {
+        e[s].querySelectorAll('span')[1].classList.add('hidden');
+        e[s].querySelectorAll('span')[2].classList.add('hidden');
+        e[s].querySelectorAll('span')[0].classList.remove('hidden');
+        this.state.case = 'caseDown';
+      }
+      if ((this.state.isShiftLeftPressed || this.state.isShiftRightPressed)) {
+        if (this.state.isCapsLockPressed) {
+          e[s].querySelectorAll('span')[0].classList.add('hidden');
+          e[s].querySelectorAll('span')[1].classList.add('hidden');
+          e[s].querySelectorAll('span')[2].classList.add('hidden');
+          e[s].querySelectorAll('span')[3].classList.remove('hidden');
+          this.state.case = 'shiftCaps';
+        } else {
+          e[s].querySelectorAll('span')[1].classList.remove('hidden');
+          e[s].querySelectorAll('span')[2].classList.add('hidden');
+          e[s].querySelectorAll('span')[3].classList.add('hidden');
+          e[s].querySelectorAll('span')[0].classList.add('hidden');
+          this.state.case = 'caseUp';
+        }
+      }
     }
   }
 }
