@@ -72,13 +72,16 @@ class KeyboardJs {
   }
 
   mouseDownHandler(e) {
+    this.current.element = e.target.closest('div');
+    if (this.current.element.classList.contains('Space')) {
+      this.btnDown();
+      return;
+    }
     if (e.target.tagName !== 'SPAN') {
       return;
     }
     this.current.event = e;
     this.current.code = e.target.innerHTML;
-
-    this.current.element = e.target.closest('div');
 
     if (this.current.element) {
       this.current.char = e.target.innerHTML;
@@ -110,10 +113,24 @@ class KeyboardJs {
   mouseUpHandler(e) {
     this.current.element = e.target.closest('div');
     this.current.event = e;
+
+    if (this.current.element.classList.contains('ShiftLeft')) {
+      const shiftLeftElement = e.target.parentElement.closest('div').parentElement.getElementsByClassName('ShiftRight');
+      if (shiftLeftElement[0].classList.contains('active')) {
+        shiftLeftElement[0].classList.remove('active');
+      }
+    }
+    if (this.current.element.classList.contains('ShiftRight')) {
+      const shiftRightElement = e.target.parentElement.closest('div').parentElement.getElementsByClassName('ShiftLeft');
+      if (shiftRightElement[0].classList.contains('active')) {
+        shiftRightElement[0].classList.remove('active');
+      }
+    }
     this.btnUp();
     if (this.current.element.classList.contains('Space')) {
       this.current.char = this.current.element.querySelectorAll(':not(.hidden)')[1].textContent;
       this.inputText(this.current.char);
+      this.btnUp();
     }
   }
 
